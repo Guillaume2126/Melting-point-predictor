@@ -3,3 +3,16 @@
 The aim of this predictor is to estimate the melting point of molecules
 
 More to come...
+
+RMSE was used as metric.
+
+List of models used:
+Model 1: Linear Regression -> High RMSE (Around 8800000)
+
+Model 2: RandomForest -> At the beginning: 46.2
+                         After GridSearch: 45.9
+        Hyperparameters:
+    {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_depth': 30}
+
+Model 3: MLPRegressor -> At the beginning: 45.5
+                         After GridSearch:
