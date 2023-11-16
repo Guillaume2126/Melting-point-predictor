@@ -1,6 +1,25 @@
 # Melting-point-predictor
 
-The aim of this predictor is to estimate the melting point of molecules
+The aim of this project is to estimate the melting point of molecules
+(explain more deeply (what is the input, output, how it works+
+add a video about how it works).
+
+To have more information about how this model was construct, please read the text above
+
+## Data collection
+
+## Data visualization and data cleaning
+
+## Feature engineering and scaling
+
+## Find a model using machine learning and deep learning
+
+### Baseline
+
+
+## API
+
+## Create the website - Front end
 
 More to come...
 
