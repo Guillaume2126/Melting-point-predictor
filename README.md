@@ -1,5 +1,7 @@
 # Melting-point-predictor
 
+⏳ WORK IN PROGRESS ⏳ 
+
 The aim of this project is to estimate the melting point of molecules
 (explain more deeply (what is the input, output, how it works+
 add a video about how it works).
