@@ -79,7 +79,7 @@ def count_h_containing_groups(smiles):
         return {}
 
 
-def create_detaframe(df):
+def create_dataframe(df):
     #Import df
     df = pd.read_csv("'"+df+"'")
 
