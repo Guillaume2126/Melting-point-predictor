@@ -131,7 +131,7 @@ def count_unique_elements(smiles):
 
 def create_dataframe(SMILES):
     #Import df
-    df = pd.DataFrame({"smiles":SMILES})
+    df = pd.DataFrame({"smiles":SMILES}, index=[0])
 
     #Create smiles to delete
     df["smiles_to_delete"] = df["smiles"]

@@ -5,8 +5,8 @@ from joblib import load
 
 app = FastAPI()
 
-model_path = "../Model/best_model_39_52.joblib"
-app.state.model = load(model_path)
+model_path_joblib = "Model/best_full_data_model.joblib"
+app.state.model = load(model_path_joblib)
 
 @app.get("/predict")
 def predict(SMILES):
@@ -17,11 +17,12 @@ def predict(SMILES):
 
     df = create_dataframe(SMILES)
 
-    X = df.drop(columns=["smiles", "mpC"])
+    X = df.drop(columns=["smiles"])
 
     model = app.state.model
     assert model is not None
-
+    print(type(X))
+    print(X)
     y_pred = model.predict(X)
 
     return dict(melting_point=float(y_pred))
