@@ -1,6 +1,10 @@
 import pandas as pd
 import numpy as np
 from rdkit import Chem
+from rdkit.Chem import Descriptors
+from rdkit.Chem import Crippen
+
+
 
 
 ch3_pattern = Chem.MolFromSmarts('[CH3]')
@@ -78,12 +82,56 @@ def count_h_containing_groups(smiles):
     else:
         return {}
 
+def calculate_molecular_weight(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is not None:
+        return Descriptors.MolWt(mol)
+    else:
+        return None
 
-def create_dataframe(df):
+
+def count_aromatic_rings(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is not None:
+        return len(Chem.GetSSSR(mol))
+    return 0
+
+
+def calculate_main_chain_length(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is not None:
+        # Find carbons
+        carbon_atoms = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetSymbol() == 'C']
+        if carbon_atoms:
+            start_atom = max(carbon_atoms, key=lambda x: len(mol.GetAtomWithIdx(x).GetNeighbors()))
+            visited_atoms = set()
+            max_length = 0
+            stack = [(start_atom, 0)]
+            while stack:
+                atom_idx, length = stack.pop()
+                visited_atoms.add(atom_idx)
+                max_length = max(max_length, length)
+
+                for neighbor in mol.GetAtomWithIdx(atom_idx).GetNeighbors():
+                    neighbor_idx = neighbor.GetIdx()
+                    if neighbor_idx not in visited_atoms:
+                        stack.append((neighbor_idx, length + 1))
+
+            return max_length
+    return 0
+
+
+def count_unique_elements(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is not None:
+        return len(set(atom.GetSymbol() for atom in mol.GetAtoms()))
+    return 0
+
+
+
+def create_dataframe(SMILES):
     #Import df
-    df = pd.read_csv("'"+df+"'")
-
-    #TODO : creer df vide et faire feature engineering
+    df = pd.DataFrame({"smiles":SMILES})
 
     #Create smiles to delete
     df["smiles_to_delete"] = df["smiles"]
@@ -138,9 +186,36 @@ def create_dataframe(df):
         df.loc[index, "smiles_to_delete"] = row["smiles_to_delete"]
 
     #Count the type and number of bonds
-    df_train['Bond Counts'] = df_train['smiles'].apply(count_bond_types)
+    df['Bond Counts'] = df['smiles'].apply(count_bond_types)
 
-    df_train['Bond Counts'] = df_train['Bond Counts'].apply(lambda x: {k: x.get(k, 0) for k in set().union(*df_train['Bond Counts'])})
-    df_train_bondtomerge = pd.DataFrame(df_train['Bond Counts'].to_list())
+    df['Bond Counts'] = df['Bond Counts'].apply(lambda x: {k: x.get(k, 0) for k in set().union(*df['Bond Counts'])})
+    df_train_bondtomerge = pd.DataFrame(df['Bond Counts'].to_list())
 
-    df_train = df_train.merge(df_train_bondtomerge, left_index=True, right_index=True)
+    df = df.merge(df_train_bondtomerge, left_index=True, right_index=True)
+
+    # Apply the function count_h_containing_groups to every smiles
+    df['Functional Groups with H'] = df['smiles'].apply(count_h_containing_groups)
+
+    # Replace missing values by 0
+    df['Functional Groups with H'] = df['Functional Groups with H'].apply(lambda x: {k: x.get(k, 0) for k in set().union(*df['Functional Groups with H'])})
+
+    # Create column for every key in the dictionnary
+    df_train_bondtomerge = pd.DataFrame(df['Functional Groups with H'].to_list())
+    df = df.merge(df_train_bondtomerge, left_index=True, right_index=True)
+
+    df['Molecular_weight'] = df['smiles'].apply(calculate_molecular_weight)
+
+    df['Aromatic Rings Count'] = df['smiles'].apply(count_aromatic_rings)
+
+    df['Main Chain Length'] = df['smiles'].apply(calculate_main_chain_length)
+
+    df['Nombre d\'éléments différents'] = df['smiles'].apply(count_unique_elements)
+
+    df['Nombre de doubles liaisons'] = df['smiles'].apply(lambda x: Chem.MolFromSmiles(x).GetNumBonds(Chem.BondType.DOUBLE) if Chem.MolFromSmiles(x) is not None else 0)
+
+    df['XLogP'] = df['smiles'].apply(lambda x: Crippen.MolLogP(Chem.MolFromSmiles(x)) if Chem.MolFromSmiles(x) is not None else 0)
+
+    df = df.drop(columns=["smiles_to_delete", "Bond Counts", "Functional Groups with H"
+                                  ])
+
+    return df

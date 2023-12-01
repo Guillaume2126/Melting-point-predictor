@@ -1,2 +1,14 @@
+numpy
+sklearn
+pandas
+matplotlib
+
+lightgbm
+
+statsmodels
+
+uvicorn
+
 rdkit
 fastapi
+joblib
