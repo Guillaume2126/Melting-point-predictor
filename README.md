@@ -1,27 +1,39 @@
 # Melting-point-predictor
 
-⏳ WORK IN PROGRESS ⏳ 
+⏳ WORK IN PROGRESS ⏳
 
-The aim of this project is to estimate the melting point of molecules
-(explain more deeply (what is the input, output, how it works+
-add a video about how it works).
+
+The project aims to develop an advanced solution for estimating the melting point of organic compounds, a crucial characteristic in the field of organic chemistry. Accurate melting point determination is essential for compound characterization, with significant implications in various sectors of scientific research and industry, including the pharmaceutical and materials industries.
+
+The estimator inputs a SMILES notation and outputs an estimated melting point.
+
+![Image](Image presentation.png)
 
 To have more information about how this model was construct, please read the text above
 
-## Data collection
+## 1️⃣ Context
 
-## Data visualization and data cleaning
+Interet du projet, bibliographie, peut-être une petite image ?
 
-## Feature engineering and scaling
 
-## Find a model using machine learning and deep learning
+
+## 2️⃣ Data collection
+
+## 3️⃣ Data visualization and data cleaning
+
+Est-ce que j'ai des beaux graphiques a mettre ? si non, alors enlever "data vizualisation" du titre
+
+## 4️⃣ Feature engineering and scaling
+
+## 5️⃣ Find a model using machine learning and deep learning
 
 ### Baseline
 
+Mettre belle image de la baseline
 
-## API
+## 6️⃣ API
 
-## Create the website - Front end
+## 7️⃣ Create the website - Front end
 https://github.com/lccopy/Melting-point-predictor-UI
 ___
 
@@ -39,3 +51,5 @@ Model 2: RandomForest -> At the beginning: 46.2
 
 Model 3: MLPRegressor -> At the beginning: 45.5
                          After GridSearch:
+
+## 8️⃣ Conclusion and future improvements
