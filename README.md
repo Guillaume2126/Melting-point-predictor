@@ -2,12 +2,13 @@
 
 ⏳ WORK IN PROGRESS ⏳
 
+Name of collaborators here ?
 
 The project aims to develop an advanced solution for estimating the melting point of organic compounds, a crucial characteristic in the field of organic chemistry. Accurate melting point determination is essential for compound characterization, with significant implications in various sectors of scientific research and industry, including the pharmaceutical and materials industries.
 
 The estimator inputs a SMILES notation and outputs an estimated melting point.
 
-![Image](Image presentation.png)
+![Image](Image_presentation.png)
 
 To have more information about how this model was construct, please read the text above
 
