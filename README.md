@@ -6,7 +6,8 @@ The project aims to develop an advanced solution for estimating the melting poin
 
 The estimator inputs a SMILES notation and outputs an estimated melting point.
 
-IMAGE
+![Image_presentation](https://github.com/Guillaume2126/Melting-point-predictor/assets/111251905/fc922485-83ad-40c0-9c30-2098057bb488)
+
 
 To have more information about how this model was construct, please read the text above
 
@@ -14,7 +15,8 @@ To have more information about how this model was construct, please read the tex
 
 The melting point of a molecule is a fundamental physical property with implications to its chemical stability and application. Traditional experimental methods for determining melting points are often time-consuming and costly. Machine learning models offer a fast, cost-effective alternative for predicting physical properties from molecular structures.
 
-IMAGE
+![Melting_point](https://github.com/Guillaume2126/Melting-point-predictor/assets/111251905/ea39b184-c869-44c6-9b15-60a306890f73)
+
 
 Recent advances in machine learning and deep learning technologies have led to the development of new models for predicting the properties of molecules. One challenge, which is still of great importance today, is the prediction of the melting temperature of chemical compounds.
 
