@@ -71,9 +71,9 @@ The errors were further examined by creating bins based on actual melting points
 
 --- In progress ---
 
-## 7️⃣ Create the website - Front end
+## 7️⃣ User Interface
 
-Use the User Interface of [Melting Point Predictor project](https://github.com/lccopy/Melting-point-predictor-UI)
+Use the [User Interface](https://github.com/lccopy/Melting-point-predictor-UI) of the project.
 
 
 <img width="700" alt="image" src="https://github.com/lccopy/Melting-point-predictor-UI/assets/111251905/003a0dfd-6932-4f07-bae8-420ee3c262a1">
