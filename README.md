@@ -6,7 +6,7 @@ The project aims to develop an advanced solution for estimating the melting poin
 
 The estimator inputs a SMILES notation and outputs an estimated melting point.
 
-![Image](Image_presentation.png)
+IMAGE
 
 To have more information about how this model was construct, please read the text above
 
@@ -14,7 +14,7 @@ To have more information about how this model was construct, please read the tex
 
 The melting point of a molecule is a fundamental physical property with implications to its chemical stability and application. Traditional experimental methods for determining melting points are often time-consuming and costly. Machine learning models offer a fast, cost-effective alternative for predicting physical properties from molecular structures.
 
-![Image](Melting_point.png)
+IMAGE
 
 Recent advances in machine learning and deep learning technologies have led to the development of new models for predicting the properties of molecules. One challenge, which is still of great importance today, is the prediction of the melting temperature of chemical compounds.
 
@@ -38,13 +38,21 @@ A quick step of data cleaning was performed to remove duplicates or NaN values.
 ## 4️⃣ Feature engineering and scaling
 
 Various stages of features engineering were carried out, mainly using the RDKit library where possible. As a result, the following columns were added to the initial dataframe:
+
 ***-> Type and number of bonds in each molecules (example: C-C or C=0)***
+
 ***-> Functional groups***
+
 ***-> Molecular weight***
+
 ***-> Number of different elements***
+
 ***-> Number of aromatic rings***
+
 ***-> Main chain lenght***
+
 ***-> Number of double bonds***
+
 ***-> XlogP***
 
 Numerical features were scaled using an ensemble of scalers to normalize data and reduce the influence of outlier values. The scaled dataset was partitioned into a 90% training set and a 10% test set, balancing the need for model training and validation accuracy.
