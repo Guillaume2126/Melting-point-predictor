@@ -12,25 +12,54 @@ To have more information about how this model was construct, please read the tex
 
 ## 1️⃣ Context
 
-Interet du projet, bibliographie, peut-être une petite image ?
+The melting point of a molecule is a fundamental physical property with implications to its chemical stability and application. Traditional experimental methods for determining melting points are often time-consuming and costly. Machine learning models offer a fast, cost-effective alternative for predicting physical properties from molecular structures.
 
+![Image](Melting_point.png)
+
+Recent advances in machine learning and deep learning technologies have led to the development of new models for predicting the properties of molecules. One challenge, which is still of great importance today, is the prediction of the melting temperature of chemical compounds.
+
+Many teams have tried to overcome this challenge, and the papers below are just a few examples:
+1. Melting temperature prediction via first principles and deep learning, Qi-Jun Hong, Computational Materials Science, 2022, 214, (111684).
+2. Building Machine Learning Small Molecule Melting Points and Solubility Models Using CCDC Melting Points Dataset Xiangwei Zhu, Valery R. Polyakov, Krishna Bajjuri, Huiyong Hu, Andreas Maderna, Clare A. Tovee, and Suzanna C. Ward, Journal of Chemical Information and Modeling, 2023, 63 (10), 2948-2959
+
+In our case, the project was carried out independently, and we are not affiliated with any laboratory or organization.
 
 
 ## 2️⃣ Data collection
 
+A dataset of molecular structures and associated melting points was gathered ([Jean-Claude Bradley Melting Point Dataset](https://figshare.com/articles/dataset/Jean_Claude_Bradley_Open_Melting_Point_Datset/1031637)).
+
 ## 3️⃣ Data visualization and data cleaning
 
-Est-ce que j'ai des beaux graphiques a mettre ? si non, alors enlever "data vizualisation" du titre
+We utilized Pearson correlation coefficients to visualize relationships between features, excluding those with coefficients greater than 0.90 to prevent multicollinearity from skewing the model's results.
+
+A quick step of data cleaning was performed to remove duplicates or NaN values.
 
 ## 4️⃣ Feature engineering and scaling
 
-## 5️⃣ Find a model using machine learning and deep learning
+Various stages of features engineering were carried out, mainly using the RDKit library where possible. As a result, the following columns were added to the initial dataframe:
+***-> Type and number of bonds in each molecules (example: C-C or C=0)***
+***-> Functional groups***
+***-> Molecular weight***
+***-> Number of different elements***
+***-> Number of aromatic rings***
+***-> Main chain lenght***
+***-> Number of double bonds***
+***-> XlogP***
 
-### Baseline
+Numerical features were scaled using an ensemble of scalers to normalize data and reduce the influence of outlier values. The scaled dataset was partitioned into a 90% training set and a 10% test set, balancing the need for model training and validation accuracy.
 
-Mettre belle image de la baseline et dire qu'on a utilisé RMSE et R² comme metriques
+## 5️⃣ Find a model by using machine learning and deep learning
+
+The LightGBM model was selected for its advantages in handling large datasets with high efficiency. A pipeline incorporating robust scaling, standard scaling and minmax normalizer was employed, ensuring that scaling would fit on the training data and could be applied consistently to the test data. The model's hyperparameters were fine-tuned using GridSearchCV, optimizing for minimal RMSE.
+
+Post hyperparameter optimization, the LightGBM model achieved RMSE scores of 40.9°C and 39.5°C on two different test runs, indicating consistent predictive capabilities. Our linear regression baseline started at 45°C. The model's performance was further visualized in a scatter plot of actual versus predicted melting points, with deviations from the y=x line analyzed to understand prediction discrepancies. The best neural network model scored at RMSE = 43. We then decided to go on with classical machine learning.
+
+The errors were further examined by creating bins based on actual melting points and calculating statistics within these bins, revealing patterns in the model's performance across different temperature ranges.
 
 ## 6️⃣ API
+
+--- In progress ---
 
 ## 7️⃣ Create the website - Front end
 
@@ -50,6 +79,9 @@ The authors would like to point out that this application has been created indep
 
 ## 8️⃣ Conclusion and future improvements
 
+The study demonstrates the potential of machine learning in predicting molecular melting points, with LightGBM providing a solid framework for development. While the current model performs adequately, further research into feature enhancement and model refinement is recommended to address areas of high predictive uncertainty. Our approach sets the stage for more sophisticated predictive tools in computational chemistry, aiding in the rapid assessment of molecular properties.
+
+To improve these results, other avenues of improvement are possible, such as adding new columns through feature engineering, increasing the number of data items, using new models and modifying hyperparameters. In our case, the results obtained (RMSE of 39.5) are satisfactory, given that RMSE in the literature are currently around 35-40.
 
 ## Collaborators
 
