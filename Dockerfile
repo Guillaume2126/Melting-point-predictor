@@ -6,4 +6,4 @@ COPY Model/best_full_data_model.joblib /Model/
 COPY requirements.txt /requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-CMD uvicorn API.fast:app --host 0.0.0.0
+CMD uvicorn API.fast:app --host 0.0.0.0 --port $PORT
