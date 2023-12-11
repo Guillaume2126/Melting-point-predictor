@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import pandas as pd
 import joblib
-from Preprocessing import Create_dataframe
+from Preprocessing.Create_dataframe import create_dataframe
 
 app = FastAPI()
 
@@ -22,7 +22,7 @@ def predict(SMILES: str):
     Assumes `SMILES` is provided as a string by the user.
     """
 
-    df = Create_dataframe.create_dataframe(SMILES)
+    df = create_dataframe(SMILES)
 
     #dataset cols
     to_keep_cols = [
