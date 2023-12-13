@@ -69,11 +69,13 @@ The errors were further examined by creating bins based on actual melting points
 
 ## 6️⃣ API
 
---- In progress ---
+To make our API accessible and to link it to our user interface, we created the Docker image and deployed the API using google cloud platform. Depending on the costs involved, the API may be voluntarily deactivated. If this is the case, we'll be happy to show you how the user interface connected to the local API works.
 
 ## 7️⃣ User Interface
 
-Try the [User Interface](https://github.com/lccopy/Melting-point-predictor-UI) of the project.
+Try the [User Interface](https://lcmrl.com/melting_point_predictor) of the project.
+
+Here is the [GitHub repository](https://github.com/lccopy/Melting-point-predictor-UI) of the User Interface.
 
 
 <img width="700" alt="image" src="https://github.com/lccopy/Melting-point-predictor-UI/assets/111251905/003a0dfd-6932-4f07-bae8-420ee3c262a1">
